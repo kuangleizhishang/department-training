@@ -26,13 +26,13 @@
 
 - 而如果你仍然学有余力，你可以去了解：
 
-[JavaScript ES6](https://www.runoob.com/w3cnote/es6-tutorial.html)
+  [JavaScript ES6](https://www.runoob.com/w3cnote/es6-tutorial.html)
 
-[Vue.js](https://www.runoob.com/vue2/vue-tutorial.html)
+  [Vue.js](https://www.runoob.com/vue2/vue-tutorial.html)
 
 - 无关你学习的顺序，这里是一些JavaScript能够做到的实例，你可以点进去看看自己是否能理解里面的功能及其实现，编程比起学术性的研究，更多的是一门实用性的技术，从实用的角度出发也许能够培养你的兴趣与创意（至少我是这么认为的）
 
-[JavaScript 实例](https://www.runoob.com/js/js-examples.html)
+  [JavaScript 实例](https://www.runoob.com/js/js-examples.html)
 
 ## 2 大概需要了解的项目及其顺序
 - JavaScript数据类型
