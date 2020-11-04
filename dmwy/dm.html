@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+    <script type="text/javascript">
+  window.onload=function(){
+        var carousel=document.getElementById('carousel');
+        var next=document.getElementById('next');
+        var prev=document.getElementById('prev');
+        var list=document.getElementById('list');
+        var span=document.getElementById('slider').getElementsByTagName('span');//获取span
+        var spanIndex=1;
+        var time;
+    
+
+        
+        next.onmousedown=function(){
+            
+            if(parseInt(list.style.left)< -2500){
+                    list.style.left = -500+'px'
+                    list.style.transition=''
+            }
+            next.onmouseup=function() {
+                list.style.left = parseInt(list.style.left)+ -500 +'px'
+                list.style.transition='1000ms'
+                
+                if(spanIndex < 5){
+                    spanIndex++
+                }else{
+                    spanIndex=1
+                }
+                for(var i = 0; i < span.length; i++){
+                    span[i].className=''
+                    span[spanIndex-1].className='active'
+                    
+                }
+            
+            }
+                
+            }
+        
+        prev.onmousedown=function(){
+            
+            if(parseInt(list.style.left)> -500){
+                list.style.left = -2500+'px'
+                list.style.transition=''
+            }
+            prev.onmouseup=function(){
+                list.style.left = parseInt(list.style.left)+ 500 +'px'
+                list.style.transition='1000ms'
+
+                
+                if(spanIndex > 1){
+                    spanIndex--
+                }else{
+                    spanIndex=5
+                }
+                for(var i = 0; i < span.length; i++){
+                    span[i].className=''
+                    span[spanIndex-1].className='active'
+                    
+                }
+            }
+        }
+            
+        
+        for(var i = 0; i < span.length; i++){
+            span[i].index=i+1
+            span[i].onclick=function(){
+                for(var i = 0; i < span.length; i++){
+                span[i].className=''
+                this.className='active'
+                }
+                list.style.left = -500*this.index+'px' 
+                spanIndex=this.index
+            }
+
+        }
+
+
+        function play(){
+            time=setInterval(function(){
+                if( parseInt(list.style.left)> -3000){
+                    list.style.left = parseInt(list.style.left)+ -500 +'px'
+                    list.style.transition='1000ms'
+
+                
+                    if(spanIndex < 5){
+                        spanIndex++
+                    }else{
+                        spanIndex=1
+                    };
+                    for(var i = 0; i < span.length; i++){
+                        span[i].className=''
+                        span[spanIndex-1].className='active'
+                    };
+                }else if(parseInt(list.style.left)< -2500){
+                    list.style.left =  -500 +'px'
+                    list.style.transition=''
+                }
+            },3000)
+        }
+
+        
+        play();
+                
+        
+        carousel.onmousemove=function(){
+            clearInterval(time)
+        }
+        
+        carousel.onmouseout=function(){
+            play()
+        }
+    }
+    
+        
+    </script>
+    <style type="text/css" >
+        body {
+            margin: 0px;
+            padding: 0px;
+            background-size: 1550px 760px;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+        .gun {
+            opacity: 0.7;
+            border-radius: 10px;
+            width: 500px;
+            height: 350px;
+        }
+        #carousel {
+            width: 500px;
+            height: 350px;
+           margin: auto;
+           padding: 0;
+            transform: translateX(-50%) translateY(-50%);
+            overflow: hidden;
+            border-radius: 10px;
+            margin-top: 300px;
+            margin-left: 300PX;
+            
+        }
+        #list {width: 9999px;
+            height: 350px;
+            
+            position: relative;
+        }
+        #list > img{
+            width: 500px;
+            height: 100%;
+            display: block;
+            float: left;
+        }
+        #slider{
+            width: 100%;
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            justify-content: center;
+        }
+        #slider > span {
+            width: 40px;
+            height: 4px;
+            display: block;
+            margin: 0 4px 0 4px;
+            float: left;
+            background-color: rgba(0, 0, 0,0.4);
+            cursor: pointer;
+        }
+        #slider .active{
+            background-color: orangered;
+        }
+        #prev,#next{
+            width: 30px;
+            height: 60px;
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            opacity: 0.3;
+            border-radius: 10px;
+        }
+        #prev{
+            left: 20px;
+            background-image: url(prev.png);
+            background-size: 30px;
+        }
+        #next{
+            right: 20px;
+            background-image: url(next.png);
+            background-size: 30px;
+
+        }
+        .header{
+            color: #73ebaf;
+            text-shadow: 2px;
+            text-align: center; 
+            font-size: 40px;  
+            text-decoration: none;   
+              
+        }
+        .word{
+            text-align: center;
+          width: 500px;
+          height: 350px;
+            opacity: 0.5;
+            background-color: aqua;
+            position: absolute;
+            top: 170px;
+            left: 800px;
+            display: inline-block;
+            border-radius: 30px;
+            background:url(timg.png);
+            
+            
+           
+        }
+        p {
+            color: #fcfa92;
+            font: lighter;
+            
+            
+            
+        }
+        .woqu{
+            width: 400px;
+            height: 300px;
+            background-color: aqua;
+            opacity: 0.4;
+            display: inline-block;
+            border-radius: 10px;
+            margin-left: 70px;
+            margin-top: 50px;
+        }
+        .woqu2{
+            width: 600px;
+            height: 300px;
+            background-color: aqua;
+            opacity: 0.4;
+            display: inline-block;
+            border-radius: 10px;
+            margin-left: 100px;
+            margin-top: 50px;
+        }
+        #great{
+            width: 1200px;
+            height: 400px;
+            background-color: aqua;
+            opacity: 0.4;
+            border-radius: 10px;
+            margin-left: 150px;
+            text-align: center;
+            line-height: 100px;
+            
+            background: url(timg.png);
+            
+        }
+        #last{
+            width: 700px;
+            height: 400px;
+            background-color:pink;
+            opacity: 0.4;
+            border-radius: 10px;
+            margin: auto;
+            padding: 0;
+            margin-top: 30px;
+            padding-top: 200px;
+            padding-left: 240px;
+            background: url(ndmz\background.png);
+
+        }
+        #reallast{
+            width: 1200px;
+            height: 100px;
+            background-color: aqua;
+            opacity: 0.4;
+            border-radius: 10px;
+            margin: auto;
+            padding: 0;
+            margin-top: 50px;
+            text-align: center;
+            padding-top: 10px;
+            background: url(ting.png);
+        }
+        ul {
+            height: 200px;
+            display: flex;
+        }
+       li {
+           height: 20px;
+           width: 20px;
+           border-radius: 10px;
+           background-color: red;
+           margin-right: 20px;
+           list-style: none;
+       }
+       li:nth-child(1){
+           background-color: red;
+           animation: love1 4s 0s infinite;
+       }
+       li:nth-child(2){
+           background-color: rgb(0, 194, 243);
+           animation: love2 4s 0.2s infinite;
+       }
+       li:nth-child(3){
+           background-color: darksalmon;
+           animation: love3 4s 0.4s infinite;
+       }
+       li:nth-child(4){
+           background-color: deeppink;
+           animation: love4 4s 0.6s infinite;
+       }
+       li:nth-child(5){
+           background-color: yellow;
+           animation: love5 4s 0.8s infinite;
+       }
+       li:nth-child(6){
+           background-color: deeppink;
+           animation: love4 4s 1s infinite;
+       }
+       li:nth-child(7){
+           background-color: darksalmon;
+           animation: love3 4s 1.2s infinite;
+       }
+       li:nth-child(8){
+           background-color: rgb(0, 194, 243);
+           animation: love2 4s 1.4s infinite;
+       }
+       li:nth-child(9){
+           background-color: red;
+           animation: love1 4s 1.6s infinite;
+       }
+       @keyframes love1{
+           30%,50%{
+               height: 60px;
+               transform: translateY(-30px);
+           }
+           70%,100% {
+               height: 0px;
+               transform: translateY((0px));
+           }
+       }
+       @keyframes love2{
+           30%,50%{
+               height: 125px;
+               transform: translateY(-60px);
+           }
+           70%,100% {
+               height: 0px;
+               transform: translateY((0px));
+           }
+       }
+       @keyframes love3{
+           30%,50%{
+               height: 160px;
+               transform: translateY(-75px);
+           }
+           70%,100% {
+               height: 0px;
+               transform: translateY((0px));
+           }
+       }
+       @keyframes love4{
+           30%,50%{
+               height: 180px;
+               transform: translateY(-60px);
+           }
+           70%,100% {
+               height: 0px;
+               transform: translateY((0px));
+           }
+       }
+       @keyframes love5{
+           30%,50%{
+               height: 200px;
+               transform: translateY(-45px);
+           }
+           70%,100% {
+               height: 0px;
+               transform: translateY((0px));
+           }
+       }
+       img {
+           border-radius: 10px;
+       }
+       a:hover{
+           color: rgb(248, 147, 122);
+       }
+       #nav{
+           width: 1200px;
+           height: 30px;
+           margin: auto;
+           padding: 0;
+          background-color: rgb(166, 238, 157);
+           opacity: 0.4;
+           border-radius: 10px;
+           line-height: 30px;
+           padding-left: 10px;
+           padding-top: 5px;
+           
+       }
+       #wenzi{
+           width: 11;
+       }
+
+    </style>
+</head>
+<body background="ndmz\Your-Name-beautiful-meteor_3840x2160.jpg">
+    <div id="nav">
+        <a href="https://www.bilibili.com/?spm_id_from=333.999.b_696e7465726e6174696f6e616c486561646572.1" style="text-decoration: none;" st >
+        <img src="1604151908.png" height="27px" style="display: inline-block;">
+        bilibili~最好的青年娱乐×学习√网站~
+        </a>
+    </div>    
+    <div id="carousel">
+        <div id="list" style="left: -500px;">
+            <img src="ndmz\2b7f276b2a20e0b45401366bb83a7345978c7f05.png@1320w_742h.png" class="gun" >
+            <img src="ndmz\6db5bf75661cc485377069b484a5951f1304970f.jpg@1320w_742h.png" class="gun">
+            <img src="ndmz\b8820e15d65e9373331cb517b4d4c012afc530cf.png@1320w_742h (2).png" class="gun">
+            <img src="ndmz\b8820e15d65e9373331cb517b4d4c012afc530cf.png@1320w_742h (6).png" class="gun">
+            <img src="ndmz\b8820e15d65e9373331cb517b4d4c012afc530cf.png@1320w_742h (7).png" class="gun">
+            <img src="ndmz\awsl.png" class="gun">
+        </div>
+        <div id="slider">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+           
+        </div>
+        <span id="prev"></span>
+        <span id="next"></span>
+        
+    </div>
+    <div class="word">a
+        <br>
+        <a href="https://www.bilibili.com/bangumi/play/ss12044/?from=search&seid=8521747123709667964" target="_blank" class="header">你的名字</a>
+        <p>简介：在远离大都会的小山村，住着巫女世家出身的高中女孩宫水三叶。不知从何时起，三叶在梦中就会变成一个住在东京的高中男孩。
+            另一方面，住在东京的高中男孩立花泷则总在梦里来到陌生的小山村，以女孩子的身份过着全新的生活。许是受那颗神秘彗星的影响，
+            泷和三叶在梦中交换了身份……</p>
+    </div>
+    <div id="great">
+        <a href="https://www.bilibili.com/bangumi/play/ep84340?from=search&seid=17692847434125176038" class="header" target="_blank">某科学的超电磁炮</a>
+        <p>简介：故事发生在面积占据东京都的三分之一，居住着230万名人口且其中八成人口是学生的巨大都市“学园都市”。
+            学园都市的所有学生均会接受超能力开发，借由药物、催眠术与通电刺激等方式取得超能力。能力者以范围和威力分为LV0至LV5。
+            主角御坂美琴是学园都市中仅七位LV5（超能力者）的其中一人，
+            排行第三。她是拥有操纵电击能力的“电击使”，站在电击能力的顶峰，因而被称为“超电磁炮”。
+        </p>
+    </div>
+    <div class="woqu">
+        <img src="cdcp\5eceeebaa8d5be66862d25dbf1edafd7eb84a320.jpg@1320w_670h.png" width="400px" height="300px">
+
+    </div>
+    <div class="woqu">
+        <img src="cdcp\28eec74c8be0c208bfb4190259a873bc3cb7f0f5.jpg@1320w_826h.png" width="400px" height="300px">
+       
+    </div>
+    <div class="woqu">
+        <img src="cdcp\a58dc46482b29cab25b33ad5040b729f676029d2.jpg@1320w_826h.png" width="400px" height="300px">
+        
+    </div>
+    <div class="woqu2">
+        <img src="cdcp\cc752cc710df3c5f762cdbd94d7a03b75cd44c2b.jpg@1320w_1584h.png" width="600px" height="300px">
+        
+    </div>
+    <div class="woqu2">
+        <img src="cdcp\d8dbcc61b309af10ad84ce9c6e0f0fa295c8c199.jpg@1320w_936h.png" width="600px" height="300px">
+        
+    </div>
+    <div id="last">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <div id="reallast">
+        <a href="https://space.bilibili.com/126378190" style="text-decoration: none;" target="_blank"><img src="logo.jpg" height="50px" width="50px" id="logo" style="border-radius: 50%;" ></a>
+        <hr style="filter: alpha(opacity=100,finishopacity=0,style=1);" width="80%" color="#987cb9" size="3">
+        <p>Copyright2020.All rights reserved by junmoxiao&nbsp;|&nbsp;<a href="https://space.bilibili.com/126378190" target="_blank" style="text-decoration: none;" style="color: yellowgreen;" >about</a></p>
+    </div>
+</body>
+</html>
